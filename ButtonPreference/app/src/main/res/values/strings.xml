@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ButtonPreference</string>
+    <string name="click">Click</string>
+    <string name="title_activity_settings">Settings</string>
+</resources>

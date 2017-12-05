@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ButtonPreference">
+        <attr name="preferenceLayoutColor" format="color" />
+        <attr name="preferenceLayoutPadding" format="dimension" />
+        <attr name="preferenceBackground" format="reference" />
+        <attr name="preferenceBackgroundColor" format="color" />
+        <attr name="preferenceAllCaps" format="boolean" />
+        <attr name="preferenceVisible" format="boolean" />
+    </declare-styleable>
+</resources>
