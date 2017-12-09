@@ -1,14 +1,40 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'button-preference'
+
+    publishedGroupId = 'com.github.kostasdrakonakis'
+    libraryName = 'ButtonPreference'
+    artifact = 'button-preference'
+
+    libraryDescription = 'A custom Preference that acts like a Button widget in PreferenceActivity in Android'
+
+    siteUrl = 'https://github.com/kostasdrakonakis/button_preference'
+    gitUrl = 'https://github.com/kostasdrakonakis/button_preference.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'kdrakonakis'
+    developerName = 'Kostas Drakonakis'
+    developerEmail = 'kostasdrakonakis13@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "27.0.1"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
     }
     buildTypes {
@@ -19,6 +45,105 @@ android {
     }
 }
 
+version = libraryVersion
+
+if (project.hasProperty("android")) { // Android libraries
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+} else { // Java libraries
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// Bintray
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = bintrayRepo
+        name = bintrayName
+        desc = libraryDescription
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = allLicenses
+        publish = true
+        publicDownloadNumbers = true
+        version {
+            desc = libraryDescription
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password")
+                //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
+
+group = publishedGroupId  // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId publishedGroupId
+                artifactId artifact
+
+                // Add your description here
+                name libraryName
+                description libraryDescription
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name licenseName
+                        url licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.0.1'
+    compile 'com.android.support:appcompat-v7:26.1.0'
 }
