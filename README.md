@@ -5,7 +5,7 @@ This is a Button Preference to be used in the Android PreferenceActivity
 Download
 --------
 
-Download [the latest JAR][2] or grab via Maven:
+Download the latest JAR or grab via Maven:
 ```xml
 <dependency>
   <groupId>com.github.kostasdrakonakis</groupId>
@@ -17,8 +17,6 @@ or Gradle:
 ```groovy
 compile 'com.github.kostasdrakonakis:button_preference:1.0.0'
 ```
-
-Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
 
 Usage
 -----
