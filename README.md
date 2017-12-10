@@ -9,13 +9,13 @@ Download the latest JAR or grab via Maven:
 ```xml
 <dependency>
   <groupId>com.github.kostasdrakonakis</groupId>
-  <artifactId>button_preference</artifactId>
+  <artifactId>button-preference</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'com.github.kostasdrakonakis:button_preference:1.0.0'
+compile 'com.github.kostasdrakonakis:button-preference:1.0.0'
 ```
 
 Usage
