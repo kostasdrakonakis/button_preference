@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 ext {
     bintrayRepo = 'maven'
@@ -81,7 +83,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
-
+    publications = ['buttonPreference']
     configurations = ['archives']
     pkg {
         repo = bintrayRepo
@@ -98,6 +100,48 @@ bintray {
                 sign = true //Determines whether to GPG sign the files. The default is false
                 passphrase = properties.getProperty("bintray.gpg.password")
                 //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
+
+// Create the pom configuration:
+def pomConfig = {
+    licenses {
+        license {
+            name licenseName
+            url licenseUrl
+            distribution "repo"
+        }
+    }
+    developers {
+        developer {
+            id developerId
+            name developerName
+            email developerEmail
+        }
+    }
+
+    scm {
+        url gitUrl
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        buttonPreference(MavenPublication) {
+            artifact sourcesJar
+            artifact javadocJar
+            groupId publishedGroupId
+            artifactId artifact
+            version libraryVersion
+            pom.withXml {
+                def root = asNode()
+                root.appendNode('description', libraryDescription)
+                root.appendNode('name', libraryName)
+                root.appendNode('url', siteUrl)
+                root.children().last() + pomConfig
             }
         }
     }
