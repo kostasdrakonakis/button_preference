@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.matrix.buttonpreference.ButtonPreference
+    <com.github.kostasdrakonakis.buttonpreference.ButtonPreference
         android:defaultValue="@string/app_name"
         android:key="@string/app_name"
         android:layout_gravity="center"

@@ -10,12 +10,12 @@ Download the latest JAR or grab via Maven:
 <dependency>
   <groupId>com.github.kostasdrakonakis</groupId>
   <artifactId>button-preference</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'com.github.kostasdrakonakis:button-preference:1.0.0'
+implementation 'com.github.kostasdrakonakis:button-preference:1.0.1'
 ```
 
 Usage

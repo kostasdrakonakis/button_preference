@@ -1,1 +1,1 @@
-include ':app', ':button_preference'
+include ':app', ':button-preference'

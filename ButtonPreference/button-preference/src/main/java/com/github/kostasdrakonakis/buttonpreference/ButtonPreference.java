@@ -1,4 +1,4 @@
-package com.matrix.buttonpreference;
+package com.github.kostasdrakonakis.buttonpreference;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -1,4 +1,4 @@
-package com.matrix.buttonpreference2;
+package com.github.buttonpreference2;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

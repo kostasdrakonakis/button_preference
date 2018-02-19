@@ -1,4 +1,4 @@
-package com.matrix.buttonpreference2;
+package com.github.buttonpreference2;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.matrix.buttonpreference.ButtonPreference;
+import com.github.kostasdrakonakis.buttonpreference.ButtonPreference;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
