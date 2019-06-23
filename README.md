@@ -24,9 +24,8 @@ Usage
 In the prefs.xml add this:
 
 ```xml
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.matrix.buttonpreference.ButtonPreference
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.github.kostasdrakonakis.ButtonPreference
         android:defaultValue="@string/app_name"
         android:key="@string/app_name"
         android:layout_gravity="center"
@@ -80,8 +79,7 @@ You can specify attributes in prefs.xml directly in the layout:
         <!-- Sets the button layout background color -->
         app:preferenceLayoutColor="@color/colorPrimaryDark"
         <!-- Sets the button Visibility -->
-        app:preferenceVisible="true"
-        ... />
+        app:preferenceVisible="true" />
 ```
 
 or programmatically like:
@@ -101,7 +99,7 @@ License
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+ <http://www.apache.org/licenses/LICENSE-2.0>
 
  Unless required by applicable law or agreed to in writing, software
  distributed under the License is distributed on an "AS IS" BASIS,
