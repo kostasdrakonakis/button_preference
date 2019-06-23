@@ -1,4 +1,4 @@
-package com.github.kostasdrakonakis.buttonpreference;
+package com.github.kostasdrakonakis;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.github.kostasdrakonakis.buttonpreference.R;
 
 public class ButtonPreference extends Preference {
 

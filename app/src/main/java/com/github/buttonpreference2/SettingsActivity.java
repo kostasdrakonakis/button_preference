@@ -8,7 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.github.kostasdrakonakis.buttonpreference.ButtonPreference;
+import com.github.kostasdrakonakis.ButtonPreference;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
