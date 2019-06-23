@@ -10,12 +10,12 @@ Download the latest JAR or grab via Maven:
 <dependency>
   <groupId>com.github.kostasdrakonakis</groupId>
   <artifactId>button-preference</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.github.kostasdrakonakis:button-preference:1.0.1'
+implementation 'com.github.kostasdrakonakis:button-preference:1.0.2'
 ```
 
 Usage
@@ -68,8 +68,7 @@ You can specify attributes in prefs.xml directly in the layout:
 
 ```xml
 
-    <com.matrix.buttonpreference.ButtonPreference
-        ...
+    <com.github.kostasdrakonakis.ButtonPreference
         <!-- Sets letters to Uppercase if true -->
         app:preferenceAllCaps="false"
         <!-- Sets the button padding  -->
