@@ -10,14 +10,13 @@ Download the latest JAR or grab via Maven:
 <dependency>
   <groupId>com.github.kostasdrakonakis</groupId>
   <artifactId>button-preference</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-implementation 'com.github.kostasdrakonakis:button-preference:1.0.2'
+implementation 'com.github.kostasdrakonakis:button-preference:1.0.3'
 ```
-
 Usage
 -----
 
@@ -35,27 +34,77 @@ In the prefs.xml add this:
 
 and then in your PreferenceActivity
 
-```java
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+```kotlin
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import com.github.kostasdrakonakis.ButtonPreference
 
-import com.matrix.buttonpreference.ButtonPreference;
+class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.settings_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.settings, SettingsFragment())
+                .commit()
+        } else {
+            title = savedInstanceState.getCharSequence(TITLE_TAG)
+        }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
-public class SettingsActivity extends AppCompatPreferenceActivity {
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.prefs);
+    override fun onPreferenceStartFragment(
+        caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+        val args = pref.extras
+        val fragment = supportFragmentManager.fragmentFactory.instantiate(
+            classLoader,
+            pref.fragment
+        ).apply {
+            arguments = args
+            setTargetFragment(caller, 0)
+        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.settings, fragment)
+            .addToBackStack(null)
+            .commit()
+        title = pref.title
+        return true
+    }
 
-        ButtonPreference buttonPreference = (ButtonPreference) findPreference(getString(R.string.app_name));
-        buttonPreference.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(SettingsActivity.this, "Preference Button clicked", Toast.LENGTH_SHORT).show();
+    internal class SettingsFragment : PreferenceFragmentCompat() {
+        override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+            setPreferencesFromResource(R.xml.prefs, rootKey)
+            val buttonPreference: ButtonPreference? = findPreference(getString(R.string.app_name))
+            buttonPreference?.setOnClickListener {
+                Toast.makeText(requireContext(), "Hello from Preference", Toast.LENGTH_SHORT).show()
             }
-        });
+            buttonPreference?.setButtonBackgroundColor(R.color.colorPrimaryDark)
+        }
+    }
+
+    companion object {
+        private fun createIntent(context: Context): Intent {
+            return Intent(context, SettingsActivity::class.java)
+        }
+
+        @JvmStatic
+        fun startActivity(activity: Activity) {
+            activity.startActivity(createIntent(activity))
+        }
+
+        const val TITLE_TAG = "settingsActivityTitle"
     }
 }
 ```
@@ -64,30 +113,36 @@ Customization
 -------------
 
 You can specify attributes in prefs.xml directly in the layout:
+* preferenceAllCaps //Sets letters to Uppercase if true
+* preferenceLayoutPadding //Sets the button padding
+* preferenceBackground //Sets the background of the button
+* preferenceBackgroundColor //Sets the background color of the Button
+* preferenceLayoutColor //Sets the button layout background color
+* preferenceVisible //Sets the button Visibility
 
 ```xml
-
     <com.github.kostasdrakonakis.ButtonPreference
-        <!-- Sets letters to Uppercase if true -->
         app:preferenceAllCaps="false"
-        <!-- Sets the button padding  -->
         app:preferenceLayoutPadding="50dp"
-        <!-- Sets the background of the button -->
         app:preferenceBackground="@mipmap/ic_launcher"
-        <!-- Sets the background color of the Button -->
         app:preferenceBackgroundColor="@color/colorAccent"
-        <!-- Sets the button layout background color -->
         app:preferenceLayoutColor="@color/colorPrimaryDark"
-        <!-- Sets the button Visibility -->
         app:preferenceVisible="true" />
 ```
 
 or programmatically like:
 
-```java
-   ButtonPreference buttonPreference = (ButtonPreference) findPreference(getString(R.string.app_name));
-   buttonPreference.setVisibility(View.VISIBLE);
-   buttonPreference.setButtonBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
+```kotlin
+internal class SettingsFragment : PreferenceFragmentCompat() {
+     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+         setPreferencesFromResource(R.xml.prefs, rootKey)
+         val buttonPreference: ButtonPreference? = findPreference(getString(R.string.app_name))
+         buttonPreference?.setOnClickListener {
+             Toast.makeText(requireContext(), "Hello from Preference", Toast.LENGTH_SHORT).show()
+         }
+         buttonPreference?.setButtonBackgroundColor(R.color.colorPrimaryDark)
+     }
+ }
 ```
 
 License
