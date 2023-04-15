@@ -1,4 +1,4 @@
-# Button Preference [![Maven Central](https://img.shields.io/badge/Maven-button--preference-brightgreen.svg)](http://search.maven.org/#search%7Cga%7C1%7Ckostasdrakonakis) [![Download](https://api.bintray.com/packages/kdrakonakis/maven/button-preference/images/download.svg)](https://bintray.com/kdrakonakis/maven/button-preference/_latestVersion) [![Build Status](https://travis-ci.org/kostasdrakonakis/button_preference.svg?branch=master)](https://travis-ci.org/kostasdrakonakis/button_preference) 
+# Button Preference [![Maven Central](https://img.shields.io/badge/Maven-button--preference-brightgreen.svg)](http://search.maven.org/#search%7Cga%7C1%7Ckostasdrakonakis)  [![Build](https://github.com/kostasdrakonakis/button_preference/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/kostasdrakonakis/button_preference/actions/workflows/android.yml)
 
 This is a Button Preference to be used in the Android PreferenceActivity
 
