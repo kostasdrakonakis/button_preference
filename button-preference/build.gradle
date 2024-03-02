@@ -3,13 +3,11 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.github.kostasdrakonakis.buttonpreference"
-    compileSdkVersion 33
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 33
-        versionCode 1
-        versionName "1.0.3"
+        targetSdkVersion 34
     }
     buildTypes {
         release {
