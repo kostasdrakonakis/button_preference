@@ -39,7 +39,6 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                 it
             ).apply {
                 arguments = args
-                setTargetFragment(caller, 0)
             }
         }
         if (fragment != null) {
