@@ -4,11 +4,12 @@ plugins {
 
 android {
     namespace "com.github.kostasdrakonakis.buttonpreference.sample"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId "com.github.kostasdrakonakis.buttonpreference.sample"
-        minSdk = 21
+        minSdk = 23
+        //noinspection OldTargetApi
         targetSdk = 36
         versionCode 1
         versionName "1.0"
@@ -31,7 +32,7 @@ android {
 
 dependencies {
     implementation project(':button-preference')
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
     implementation 'androidx.preference:preference-ktx:1.2.1'
 }

@@ -4,10 +4,10 @@ plugins {
 
 android {
     namespace "com.github.kostasdrakonakis.buttonpreference"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
     }
 
     buildTypes {
@@ -24,14 +24,14 @@ android {
         jvmToolchain(21)
     }
     lint {
-        targetSdk = 36
+        targetSdk = 37
     }
     testOptions {
-        targetSdk = 36
+        targetSdk = 37
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
 }
